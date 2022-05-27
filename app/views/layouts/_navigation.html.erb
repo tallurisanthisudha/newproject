@@ -1,0 +1,61 @@
+<nav class="navbar navbar-dark bg-dark">
+
+<div class="navigation">
+
+<a class="navbar-brand ml-5" href="/">
+
+<img class="zensark-img" src="https://zensark.com/zensark2/wp-content/uploads/2021/01/Asset-16.png">
+
+</a>
+
+<% if current_employee %>
+
+<div class="profile-container">
+
+<p class="profile-name"><%= current_employee.full_name%></p>
+
+<div class="dropdown">
+
+<button class="round-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+
+<%= current_employee.profile_name %>
+
+</button>
+
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+<% if current_employee.is_admin? %>
+
+<li><%= button_to "Adminstration", leaves_path, class: " dropdown-item btn btn-secondary", method: :get%></li>
+
+
+
+<% end %>
+
+<li><%= button_to "Manager", managerpage_path, class: " dropdown-item btn btn-secondary", method: :get%></li>
+
+<li><%= button_to "Logout", destroy_employee_session_path, class: " dropdown-item btn btn-secondary", method: :delete%></li>
+
+</ul>
+
+</div>
+
+</div>
+
+<% else%>
+
+<% if request.path.split("/").last == 'sign_in' || request.path.split("/").last == 'sign_in?' %>
+
+<%= button_to "Home", root_path, class: "btn btn-warning", method: :get %>
+
+<% else %>
+
+<%= button_to "sign in", new_employee_session_path, class: "btn btn-warning mr-5", method: :get %>
+
+<% end%>
+
+<%end%>
+
+</div>
+
+</nav>

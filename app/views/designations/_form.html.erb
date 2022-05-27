@@ -1,0 +1,19 @@
+
+<h1>DESIGNATION MANAGEMENT</h1>
+<%= form_with  model: @designation do |f| %>
+    <div class="field">
+    <%= f.label :last_name, "Name" %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true, autocomplete: "description" %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Add",class:"loginbutton" %>
+    </div>
+
+
+  <% end %>

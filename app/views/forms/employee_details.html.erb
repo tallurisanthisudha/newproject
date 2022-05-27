@@ -1,0 +1,44 @@
+<div>
+<%= form_with do @employee_details|form| %>
+    <div class="field">
+    <%= f.label :contact_no %><br />
+    <%= f.num_field :contact_no, autofocus: true, autocomplete: "contact_no" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :emergency_contact_no %><br />
+    <%= f.number_field :emergency_contact_no, autofocus: true, autocomplete: "emergency_contact_no" %>
+    </div>
+
+
+    <div class="field">
+    <%= f.label :designation %><br />
+    <%= f.number_field :contact_no, autofocus: true, autocomplete: "contact_no" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :employee_id%><br />
+    <%= f.number_field :employee_id, autofocus: true, autocomplete: "employee_id" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :manager_id %><br />
+    <%= f.number_field :manager_id, autofocus: true, autocomplete: "manager_id" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :blood_group%><br />
+    <%= f.text_field :blood_group, autofocus: true, autocomplete: "blood_group" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :project_id %><br />
+    <%= f.number_field :project_id, autofocus: true, autocomplete: "project_id" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :experience%><br />
+    <%= f.number_field :experience, autofocus: true, autocomplete: "experience" %>
+    </div>
+    </div>
+  <% end %>

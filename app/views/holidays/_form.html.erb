@@ -1,0 +1,24 @@
+
+<h1>HOLIDAYS MANAGEMENT</h1>
+<%= form_with  model: @holiday do |f| %>
+    <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_field :date, autofocus: true, autocomplete: "date" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year, autofocus: true, autocomplete: "year" %>
+    </div>
+
+    <div class="actions ">
+        <%= f.submit "Add",class:"loginbutton" %>
+    </div>
+
+
+  <% end %>

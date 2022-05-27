@@ -1,0 +1,26 @@
+<div>
+<%= form_with do @attendance|form| %>
+    <div class="field">
+    <%= f.label :login %><br />
+    <%= f.date_field :name, autofocus: true, autocomplete: "login" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :logout %><br />
+    <%= f.time_field :logout, autofocus: true, autocomplete: "logout" %>
+    </div>
+
+
+    <div class="field">
+    <%= f.label :reason %><br />
+    <%= f.text_field :reason, autofocus: true, autocomplete: "reason" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :employee_id %><br />
+    <%= f.number_field :employee_id, autofocus: true, autocomplete: "employee_id" %>
+    </div>
+</div>
+
+
+  <% end %>

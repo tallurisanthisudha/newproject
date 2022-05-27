@@ -1,0 +1,65 @@
+<%= form_with model:@employee_detail do |f| %>
+
+    <div class="field-form">
+    
+    <%= f.label :contact_no%><br />
+    
+    <%= f.text_field :contact_no, autofocus: true, autocomplete: "contact_no" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :emergency_contact_no %><br />
+    
+    <%= f.text_field :emergency_contact_no, autofocus: true, autocomplete: "emergency_contact_no" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :designation_id %><br />
+    
+    <%= f.text_field :designation_id, autofocus: true, autocomplete: "designation_id" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :employee_id %><br />
+    
+    <%= f.text_field :employee_id, autofocus: true, autocomplete: "employee_id" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :manager_id %><br />
+    
+    <%= f.text_field :manager_id, autofocus: true, autocomplete: "manager_id" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :blood_group %><br />
+    
+    <%= f.text_field :blood_group, autofocus: true, autocomplete: "blood_group" %>
+    
+    </div>
+    
+    <div class="field-form">
+    
+    <%= f.label :work_experience %><br />
+    
+    <%= f.text_field :work_experience, autofocus: true, autocomplete: "work_experience" %>
+    
+    </div>
+    
+    <div class="actions">
+    
+    <%= f.submit "Save",class: "save-button"%>
+    
+    </div>
+    
+    <% end %>

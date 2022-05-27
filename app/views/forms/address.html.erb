@@ -1,0 +1,43 @@
+<div>
+<%= form_with do @address|form| %>
+
+    <div class="field">
+    <%= f.label :house_no %><br />
+    <%= f.text_field :house_no, autofocus: true, autocomplete: "house_no" %>
+    </div>
+ 
+    <div class="field">
+    <%= f.label :street %><br />
+    <%= f.text_field :street, autofocus: true, autocomplete: "street" %>
+    </div>
+    
+    <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
+    </div>
+
+
+    <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :city, autofocus: true, autocomplete: "state" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :pincode %><br />
+    <%= f.number_field :city, autofocus: true, autocomplete: "pincode"%>
+    </div>
+
+
+    <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :city, autofocus: true, autocomplete: "country" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :employee_id %><br />
+    <%= f.number_field :city, autofocus: true, autocomplete: "employee_id" %>
+    </div>
+ 
+    
+    </div>
+  <% end %>
