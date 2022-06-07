@@ -15,7 +15,7 @@ class EmployeesController < ApplicationController
     end
 
     def update
-        if @employee.update(leave_params)
+        if @employee.update(employee_params)
             redirect_to index_path
         else
             render "edit"
@@ -27,20 +27,23 @@ class EmployeesController < ApplicationController
         @employee = Employee.new
         
     end
-        
+
+
     def create
-        
-        @employee= Employee.new(employeesparams)
-        
-        if @employee.save
-            redirect_to employees_path
-        else
-            render 'new'
+        @employee = Employee.new(employeesparams)
+        respond_to do |format|
+          if @employee.save
+            format.html { redirect_to designation_url, notice: "Designation was successfully created." }
+            format.json { render :show, status: :created, location: @employee }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @employee.errors, status: :unprocessable_entity }
+            format.turbo_stream { render :form_update, status: :unprocessable_entity }
+          end
         end
+      end
         
-        
-        
-    end
+    
         
     def employeesparams
         

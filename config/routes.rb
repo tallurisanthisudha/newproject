@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'hr',to: 'home#hr'
   get 'signnedin', to: 'home#signnedin'
   get 'dashboardopen', to: 'home#dashboardopen'
-  get 'leavespage', to: 'home#leavespage'
+  #get 'leavespage', to: 'home#leavespage'
   get 'managerpage', to: 'manager#managerpage'
   
   #get 'adminhome', to: 'admin#adminhome'
@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   resources :employees
   resources :employee_details
   resources :addresses
+  resources :employee_leaves
   
 end

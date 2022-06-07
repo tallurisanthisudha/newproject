@@ -11,42 +11,45 @@ class EmployeeDetailsController < ApplicationController
 
     def destroy
         @employee_detail.destroy
-        redirect_to index_path
+        redirect_to employee_details_path
 
 
 
     end
 
     def update
-        if @employee_detail.update(employee_detail_params)
-            redirect_to index_path
-        else
-            render "edit"
-        end
 
+        respond_to do |format|
+        if @employee_detail.update(employee_detailsparams)
+        format.html { redirect_to employee_detail_url, notice: "Employee details was successfully updated." }
+        format.json { render :show, status: :updated, location: @employee_detail }
+    else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @employee_detail.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+    end
+    end
 
-
-    
     end
 
     def new
-
         @employee_detail = EmployeeDetail.new
-
-
-        
     end
         
     def create
-        
-        @employee_detail= EmployeeDetail.new(employee_detailsparams)
-        
-        if @employee_detail.save
-            redirect_to employee_details_path
-        else
-            render 'new'
+        @employee_detail = EmployeeDetail.new(employee_detailsparams)
+      
+        respond_to do |format|
+          if @employee_detail.save
+            format.html { redirect_to employee_details_url, notice: "Holiday was successfully created." }
+            format.json { render :show, status: :created, location: @employee_detail }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @employee_detail.errors, status: :unprocessable_entity }
+            format.turbo_stream { render :form_update, status: :unprocessable_entity }
+          end
         end
-        #render plain: @holidays.errors.inspect
+       
 
 
        
@@ -63,9 +66,10 @@ class EmployeeDetailsController < ApplicationController
     end
 
     def index
-       @employee_details =EmployeeDetail.all
-
-       @addresses= Address.all
+       @employee_details =current_employee.employee_detail
+       @add =current_employee.address.nil?
+       @emp= current_employee.employee_detail.nil?
+       @addresses= current_employee.address
     end 
     
 end

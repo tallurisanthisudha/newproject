@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
    paginates_per 2
 
+   validates_presence_of :first_name, :last_name, :employee_unique_id
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -12,7 +14,8 @@ class Employee < ApplicationRecord
 
 has_one :address
 has_many :attendances
-has_many :employee_leaves
+has_many :employee_leaves,class_name: 'EmployeeLeave'
+has_one :employee_detail
 #has_many :leaves, :through=> :employee_leaves
 #has_one :designation, :through=> :employee_detail
 #has_many :employee_projects

@@ -1,6 +1,9 @@
 <div class='employeemaincont'>
 <%=render "home/leftmenu" %>
 <div>
+<% if @add %>
+<%= link_to "ADD DESIGNATION", new_address_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%>
+<% else %>
 <% @addresses.each do |address| %>
   
     <div><p>House_no :<%=address.house_no%></p></div>
@@ -17,5 +20,7 @@
     </svg>
     <% end %>
 <% end %>
+<% end %>
+
 </div>
 </div>

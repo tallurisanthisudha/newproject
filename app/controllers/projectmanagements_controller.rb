@@ -30,17 +30,19 @@ class ProjectmanagementsController < ApplicationController
         
     def create
         
-        @projectmanagement= Projectmanagement.new(projectsparams)
-        
-        if @projectmanagement.save
-            redirect_to projectmanagements_path
-        else
-            render 'new'
+        @projectmanagement = Projectmanagement.new(projectsparams)
+  
+        respond_to do |format|
+          if @projectmanagement.save
+            format.html { redirect_to leaves_url, notice: "Leave was successfully created." }
+            format.json { render :show, status: :created, location: @projectmanagement }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @projectmanagement.errors, status: :unprocessable_entity }
+            format.turbo_stream { render :form_update, status: :unprocessable_entity }
+          end
         end
-        #render plain: @holidays.errors.inspect
-        
-        
-    end
+      end
         
     def projectsparams
         

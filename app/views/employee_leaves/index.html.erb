@@ -1,0 +1,22 @@
+<div class="maincontainer d-flex flex-row">
+<%=render "home/leftmenu" %>
+
+<div class="right-container">
+<div class="leave-main-cont ">
+<div class="leavespage"> 
+<div> <p><%= @ls.count%></p></div>
+<h5 class="leaveheads">Total leaves</h5>
+</div>
+<div class="leavespage"> 
+<div> <p><%= @employee_leaves.count%></p></div>
+<h5 class="leaveheads" >Applied leaves</h5>
+</div>
+<div class="leavespage">
+<div> <p><%= @el%></p></div>
+<h5 class="leaveheads" >Available leaves</h5>
+</div>
+</div>
+
+<div class="formcontainer">
+<%= link_to "ADD LEAVE", new_employee_leafe_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%>
+</div>

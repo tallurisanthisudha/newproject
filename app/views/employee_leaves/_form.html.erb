@@ -1,0 +1,34 @@
+<%= form_with  model: @employee_leave do |f| %>
+    <div class="field">
+    <%= f.label :leave_id,"LEAVE-ID" %><br />
+    <%= f.select :leave_id,Leave.all.collect {|leave| [leave.name,leave.id]}%>
+    </div>
+ 
+    
+
+    <div class="field">
+    <%= f.label :start_date,"START DATE" %><br />
+    <%= f.date_field :start_date, autofocus: true, autocomplete: "start_date" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :end_date,"END DATE" %><br />
+    <%= f.date_field :end_date, autofocus: true, autocomplete: "end_date" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :confirmed_by,"CONFIRMED BY" %><br />
+    <%= f.text_field :confirmed_by, autofocus: true, autocomplete: "confirmed_by" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :reason,"REASON" %><br />
+    <%= f.text_field :reason, autofocus: true, autocomplete: "reason" %>
+    </div>
+
+    <div class="actions ">
+        <%= f.submit "ADD",class:"loginbutton" %>
+    </div>
+
+
+  <% end %>

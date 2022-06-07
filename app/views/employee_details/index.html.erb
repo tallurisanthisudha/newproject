@@ -1,72 +1,86 @@
-<div class='employeemaincont'>
-<%=render "home/leftmenu" %>
-<div class="employee-addresses-cont">
-
-<% @employee_details.each do |ed| %>
- <div class="edcont"> 
- 
- <div class="attributes-cont">
- <h2>EMPLOYEE DETAILS</h2> 
-<div><p><span style="color:blue;font-weight:bold">Contact No:  </span><%= ed.contact_no%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Emergency Contact No: </span><%= ed.emergency_contact_no%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Designation ID : </span><%= ed.designation_id%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Employee ID : </span><%= ed.employee_id%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Manager ID : </span><%= ed.manager_id%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Blood Group: </span><%= ed.blood_group%></p></div>
-<div><p><span style="color:blue;font-weight:bold">Work Experience: </span><%= ed.work_experience%></p></div>
-<div class="buttons-container">
-<%= button_to edit_employee_detail_path(ed),method: :get, class: "btn", data: { turbo_frame: "remote_modal" } do%>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-    </svg>
-    <% end %>
-    <%= button_to employee_detail_path(ed),method: :delete,class:"btn" do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-    </svg>
-    <% end %>
-    
+<div class="settings-main-container">
+<%= render "home/leftmenu" %>
+<div class="emp-add-container">
+<div class="settings-sub-cont">
+    <% if @emp %>
+        <div class="cont-button">
+          <%= button_to "Enter Your Details", new_employee_detail_path,method: :get, class: "employee-add-button", data: { turbo_frame: "remote_modal" }%>
+        </div>
+    <% else %>
+      <div class="employee-details-cont">
+      <div class="elements-container">
+      <div class="attributes-left-cont">
+      <h2 class="details-head">Employee Details</h2>
+      <div><p><span style="color:#608fd1;font-weight:bold">Contact No: </span> <%= @employee_details.contact_no%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Emergency Contact No: </span><%= @employee_details.emergency_contact_no%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Designation Id: </span><%= @employee_details.designation_id%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Employee Id: </span><%= @employee_details.employee_id%></p></div>
+      </div>
+      <div class="attributes-right-cont">
+      <div><p><span style="color:#608fd1;font-weight:bold">Manager Id: </span><%= @employee_details.manager_id%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Blood Group: </span><%= @employee_details.blood_group%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Work Experince: </span><%=@employee_details.work_experience%></p></div>
+      <div class="buttons-cont">
+      <%= button_to  edit_employee_detail_path(@employee_details),method: :get, class: "btn", data: { turbo_frame: "remote_modal" } do%>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+      </svg>
+      <% end %>
+      
+      <%= button_to  employee_detail_path(@employee_details),method: :delete,class: "btn" do%>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+      <% end %>
+      </div>
+      </div>
+     </div>
+      </div>
+  <% end %>
 </div>
-</div>
-</div>
-
-<% end %>
-</div>
 
 
+<div class="settings-sub-cont">
+    <% if @add %>
+        <div class="cont-button">
+        <%= button_to "Add Address", new_address_path,method: :get, class: "employee-add-button", data: { turbo_frame: "remote_modal" }%>
+        </div>
+    <% else %>
+  <div class="employee-details-cont">
 
+      <div class="elements-container">
+      <div class="attributes-left-cont">
+      <h2 class="details-head">Addresses</h2>
+      <div><p><span style="color:#608fd1;font-weight:bold">Door NO: </span> <%= @addresses.house_no%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Street: </span><%= @addresses.street%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">City: </span><%= @addresses.city%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">State: </span><%= @addresses.state%></p></div>
+      </div>
+      <div class="attributes-right-cont">
+      <div><p><span style="color:#608fd1;font-weight:bold">Pincode: </span><%= @addresses.pincode%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Country: </span><%= @addresses.country%></p></div>
+      <div><p><span style="color:#608fd1;font-weight:bold">Employee Id: </span><%= @addresses.employee_id%></p></div>
+      <div class="buttons-cont">
+      <%= button_to  edit_address_path(@addresses),method: :get, class: "btn", data: { turbo_frame: "remote_modal" } do%>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+      </svg>
+      <% end %>
+      <%= button_to  address_path(@addresses),method: :delete,class: "btn" do%>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+      <% end %>
 
-
-<div class="edcont">
-
-<% @addresses.each do |address| %>
-    <div class="attributes-cont">
-    <h2>ADDRESS DETAILS</h2>
-    <div><p><span style="color:blue;font-weight:bold">Employee Id: </span><%= address.employee_id%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">House No: </span><%=address.house_no%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">street: </span><%= address.street%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">City: </span><%= address.city%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">State: </span><%= address.state%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">pincode: </span><%= address.pincode%></p></div>
-    <div><p><span style="color:blue;font-weight:bold">country: </span><%= address.country%></p></div>
-    
-    <div class="buttons-container">
-    <%= button_to edit_address_path(address),method: :get, class: "btn", data: { turbo_frame: "remote_modal" } do%>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-    </svg>
-    <% end %>
-
-    <%= button_to address_path(address),method: :delete,class:"btn" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-    </svg>
-    <% end %>
+      </div>
+     </div>
     </div>
     </div>
-<% end %>
+  <% end %>
+</div>
+</div>
 </div>
 
 

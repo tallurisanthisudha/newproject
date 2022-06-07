@@ -16,7 +16,7 @@ class AddressesController < ApplicationController
 
     def update
         if @address.update(address_params)
-            redirect_to employee_details_path
+            redirect_to address_path
         else
             render "edit"
         end
@@ -29,22 +29,22 @@ class AddressesController < ApplicationController
     end
         
     def create
-        
-        @address= Address.new(address_params)
-        
-        if @address.save
-            redirect_to employee_details_path
-        else
-            render 'new'
+        @address = current_employee.build_address(address_params)
+        respond_to do |format|
+          if @address.save
+            format.html { redirect_to addresses_url, notice: "Address was successfully created." }
+            format.json { render :show, status: :created, location: @address }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @address.errors, status: :unprocessable_entity }
+            format.turbo_stream { render :form_update, status: :unprocessable_entity }
+          end
         end
-        #render plain: @holidays.errors.inspect
-         
-        
-    end
+      end
         
     def address_params
         
-        params.require(:address).permit(:street,:city,:state,:pincode,:country,:employee_id)
+        params.require(:address).permit(:house_no,:street,:city,:state,:pincode,:country,:employee_id)
         
     end
 

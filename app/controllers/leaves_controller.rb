@@ -15,8 +15,8 @@ class LeavesController < ApplicationController
     end
 
     def update
-        if @leave.update(leave_params)
-            redirect_to index_path
+        if @leave.update(leavesparams)
+            redirect_to leaves_path
         else
             render "edit"
         end
@@ -28,23 +28,26 @@ class LeavesController < ApplicationController
         
     end
         
-    def create
-        
-        @leave= Leave.new(leavesparams)
-        
-        if @leave.save
-            redirect_to leaves_path
-        else
-            render 'new'
-        end
-        
-        
-        
+
+    # ajax calls
+def create
+    @leave = Leave.new(leavesparams)
+  
+    respond_to do |format|
+      if @leave.save
+        format.html { redirect_to leaves_url, notice: "Leave was successfully created." }
+        format.json { render :show, status: :created, location: @leave }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @leave.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
     end
+  end
         
     def leavesparams
         
-        params.require(:leave).permit(:name , :description)
+        params.require(:leave).permit(:name , :description , :no_of_days)
         
     end
 

@@ -10,13 +10,13 @@ class HolidaysController < ApplicationController
 
     def destroy
         @holiday.destroy
-        redirect_to index_path
+        redirect_to holidays_path
 
     end
 
     def update
-        if @holiday.update(holiday_params)
-            redirect_to index_path
+        if @holiday.update(holidaysparams)
+            redirect_to holidays_path
         else
             render "edit"
         end
@@ -27,20 +27,24 @@ class HolidaysController < ApplicationController
         @holiday = Holiday.new
         
     end
-        
+
+
     def create
-        
-        @holidays= Holiday.new(holidaysparams)
-        
-        if @holidays.save
-            redirect_to holidays_path
-        else
-            render 'new'
+        @holiday = Holiday.new(holidaysparams)
+      
+        respond_to do |format|
+          if @holiday.save
+            format.html { redirect_to holidays_url, notice: "Holiday was successfully created." }
+            format.json { render :show, status: :created, location: @holiday }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @holiday.errors, status: :unprocessable_entity }
+            format.turbo_stream { render :form_update, status: :unprocessable_entity }
+          end
         end
-        #render plain: @holidays.errors.inspect
+      end
         
-        
-    end
+
         
     def holidaysparams
         
